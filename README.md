@@ -32,8 +32,21 @@ b. Calculate the GBCE All Share Index using the geometric mean of prices for all
 ### Using Maven
 
 	1. Download the zip to a local directory 
-	2. With all maven settings run mvn clean install
-	3. Refer Test Classes to know how it will work	
+	2. With all maven settings run mvn spring-boot:run
+	3. With postman or browser hit the rest APIs and get the result
+	4. Refer Test Classes to know how it will work	
+	
+	Below are the endpoints - 
+	1. http://localhost:8080/stockMarket/createStocksInMarket
+	2. http://localhost:8080/stockMarket/getAllStocks
+	3. http://localhost:8080/stockMarket/buy?stockSymbol=GIN&quantity=10&price=20000  -- POST request
+	4. http://localhost:8080/stockMarket/sell?stockSymbol=GIN&quantity=10&price=20000 -- POST request
+	5. http://localhost:8080/stockMarket/calculateDividendYield/{stockSymbol}/{price}
+	6. http://localhost:8080/stockMarket/calculatePERatio/{stockSymbol}/{price}
+	7. http://localhost:8080/stockMarket/volWeightedStockPrice/{stockSymbol}/{minutes}
+	8. http://localhost:8080/stockMarket/calculateAllShareIndex
+	
+	
 
 ### Using pre-built jar: This source code has pre-built using java version "1.8.0_101".
 	1. Download SuperSimpleStockMarket.jar to a location say C:\
