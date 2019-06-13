@@ -109,14 +109,13 @@ public class StockMarketController {
     /**
      *
      * @param stockSymbol
-     * @param minutes
      * @return
      * @throws InvalidStockException
      */
-    @GetMapping("/volWeightedStockPrice/{stockSymbol}/{minutes}")
-    public ResponseEntity<Double>  calculateVolumeWeightedStockPrice(@PathVariable String stockSymbol, @PathVariable int minutes) throws InvalidStockException
+    @GetMapping("/volWeightedStockPrice/{stockSymbol}")
+    public ResponseEntity<Double>  calculateVolumeWeightedStockPrice(@PathVariable String stockSymbol) throws InvalidStockException
     {
-        return new ResponseEntity<> (stockExchange.calculateVolumeWeightedStockPrice(stockSymbol, minutes), HttpStatus.OK);
+        return new ResponseEntity<> (stockExchange.calculateVolumeWeightedStockPrice(stockSymbol), HttpStatus.OK);
     }
 
 

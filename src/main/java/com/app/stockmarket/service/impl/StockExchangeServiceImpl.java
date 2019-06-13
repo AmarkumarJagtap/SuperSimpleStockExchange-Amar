@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
 public class StockExchangeServiceImpl implements StockExchangeService {
 
 
-	private static final int FIFTEEN_MINUTES = 2;
+	private static final int FIFTEEN_MINUTES = 15;
 
 	@Autowired
 	protected TradeService tradeService;
@@ -142,6 +142,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	 * @param stockSymbol
 	 * @return
 	 */
+	@Override
 	public double calculateVolumeWeightedStockPrice(String stockSymbol) throws InvalidStockException  {
 		
 		if(tradeService == null)
@@ -171,7 +172,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 		return stockAPI.priceOverDividendRatio(stockSymbol, price);
 	}
 
-	@Override
+
 	public double calculateVolumeWeightedStockPrice(String stockSymbol, int minutes) throws InvalidStockException {
 		
 		if(tradeService == null)

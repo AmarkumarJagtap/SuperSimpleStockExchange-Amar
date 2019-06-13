@@ -53,8 +53,8 @@ public abstract class AbstractStockAPI implements IStockAPI {
 		return 0;
 	}
 
-@Override
-	public double volumeWeightedStockPriceByTime(String stockSymbol, int minutes) throws InvalidStockException {
+    @Override
+	public double volumeWeightedStockPriceByTime(String stockSymbol, int minutes) {
 
 		double volumeWeightedStockPrice = 0.0;
 
@@ -94,7 +94,7 @@ public abstract class AbstractStockAPI implements IStockAPI {
 	 * Calculate the GBCE All Share Index using the geometric mean of prices for
 	 * all stocks
 	 */
-	public double calculateAllShareIndex() throws InvalidStockException {
+	public double calculateAllShareIndex() {
 		double geometricMean = 0.0;
 
 		List<TradeTransaction> records = stockDataService.getAllTransactionRecords();

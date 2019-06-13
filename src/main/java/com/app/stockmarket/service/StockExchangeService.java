@@ -73,13 +73,12 @@ public interface StockExchangeService {
 	/**
 	 * Calculate Volume Weighted Stock Price based on trades in past given input minutes
 	 * 
-	 * @param symbol Symbol of the stock
-	 * @param minutes Time frame in which volume weighted stock price has to be calculated 
+	 * @param stockSymbol Symbol of the stock
 	 * @return Volume Weighted Stock price of a given stock
 	 * 
 	 * @throws InvalidStockException  When no stock is associated with the stock symbol
 	 */
-	public double calculateVolumeWeightedStockPrice(String stockSymbol, int minutes) throws InvalidStockException;
+	public double calculateVolumeWeightedStockPrice(String stockSymbol) throws InvalidStockException;
 
 	/**
 	 * Set all stock symbols
