@@ -51,7 +51,7 @@ public class StockExchangeServiceImplTest {
 	public static void setUp() throws Exception {
 		
 		stockDS = new StockDataServiceImpl();
-		
+
 		stockExchangeServiceImpl = new StockExchangeServiceImpl();
 		stockExchangeServiceImpl.setCountry("UK");
 		stockExchangeServiceImpl.setName("GBCE");
@@ -59,7 +59,7 @@ public class StockExchangeServiceImplTest {
 		tradeService = new TradeServiceImpl();
 		tradeService.setStockDataService(stockDS);
 		stockExchangeServiceImpl.registerTradeService(tradeService);
-		
+
 		try {
 			FixedDividendStock stock = new FixedDividendStock();
 			stock.setSymbol("GIN");

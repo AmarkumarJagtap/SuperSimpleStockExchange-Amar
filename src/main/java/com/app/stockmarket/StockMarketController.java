@@ -10,7 +10,9 @@ import com.app.stockmarket.service.TradeService;
 import com.app.stockmarket.service.StockExchangeService;
 import com.app.stockmarket.types.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,12 +27,21 @@ import java.util.List;
 public class StockMarketController {
 
 
+    /**
+     * Stock Data Service used to record stocks information
+     */
     @Autowired
     StockDataService stockDS;
 
+    /**
+     * Trade service
+     */
     @Autowired
     TradeService tradeService;
 
+    /**
+     * Stock exchange to perform all the operations
+     */
     @Autowired
     StockExchangeService stockExchange;
 
@@ -131,6 +142,44 @@ public class StockMarketController {
 
     /**
      *
+     * @param commonStock
+     * @return
+     */
+
+    @PostMapping(value = "/createCommonStock", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> createCommonStock(@RequestBody CommonStock commonStock) throws  InvalidStockException{
+        tradeService.setStockDataService(stockDS);
+        stockExchange.setName("GBCE");
+        stockExchange.setCountry("UK");
+        stockExchange.registerStockDataService(stockDS);
+        stockExchange.registerTradeService(tradeService);
+
+        return new ResponseEntity<> (stockExchange.createStockInMarket(commonStock) ? "Common Stock added successfully" : "Something went wrong, please try again", HttpStatus.OK);
+
+    }
+
+
+    /**
+     *
+     * @param stock
+     * @return
+     */
+    @PostMapping(value = "/createPreferredStock", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> createPreferredStock(@RequestBody FixedDividendStock stock) throws  InvalidStockException{
+        tradeService.setStockDataService(stockDS);
+        stockExchange.setName("GBCE");
+        stockExchange.setCountry("UK");
+        stockExchange.registerStockDataService(stockDS);
+        stockExchange.registerTradeService(tradeService);
+
+        return new ResponseEntity<> (stockExchange.createStockInMarket(stock) ? "Preferred Stock added successfully" : "Something went wrong, please try again", HttpStatus.OK);
+
+    }
+
+
+
+    /**
+     *
      * @return
      * @throws InvalidStockException
      */
@@ -168,7 +217,6 @@ public class StockMarketController {
         stock.setSymbol("JOE");
         stock.setLastDividend(13);
         stock.setParValue(250);
-        stock.setLastDividend(23);
         stock.setCurrency(Currency.USD);
         stockExchange.createStockInMarket(stock);
 

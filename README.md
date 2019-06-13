@@ -16,7 +16,7 @@ b. Calculate the GBCE All Share Index using the geometric mean of prices for all
 
 2. com.app.stockmarket.service.StockExchangeService : Interface to define operations on stock market to buy/sell stock, create new stock, calculate stock data
 
-3. com.app.stockmarket.service.impl.StockExchangeServiceImpl : An abstract implemnentation of StockExchangeAPI
+3. com.app.stockmarket.service.impl.StockExchangeServiceImpl : An abstract implementation of StockExchangeAPI
 
 4. com.app.stockmarket.api.IStockAPI : Interface for calculative operations on stock
 
