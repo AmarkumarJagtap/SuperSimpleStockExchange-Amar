@@ -185,8 +185,8 @@ public class StockMarketController {
      * @return
      * @throws InvalidStockException
      */
-    @PostMapping(value = "/createPreferredStock", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createPreferredStock(@RequestBody List<FixedDividendStock> stocks) throws  InvalidStockException{
+    @PostMapping(value = "/createPreferredStocks", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> createPreferredStocks(@RequestBody List<FixedDividendStock> stocks) throws  InvalidStockException{
         tradeService.setStockDataService(stockDS);
         stockExchange.setName("GBCE");
         stockExchange.setCountry("UK");
