@@ -196,7 +196,7 @@ public class StockMarketController {
             stockExchange.createStockInMarket(stock);
         }
 
-        return new ResponseEntity<> ( "Common Stock added successfully", HttpStatus.OK);
+        return new ResponseEntity<> ( "Preferred Stocks added successfully", HttpStatus.OK);
 
     }
 
