@@ -6,11 +6,10 @@ import com.app.stockmarket.domain.FixedDividendStock;
 import com.app.stockmarket.domain.Stock;
 import com.app.stockmarket.exception.InvalidStockException;
 import com.app.stockmarket.service.StockDataService;
-import com.app.stockmarket.service.TradeService;
 import com.app.stockmarket.service.StockExchangeService;
+import com.app.stockmarket.service.TradeService;
 import com.app.stockmarket.types.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -145,7 +144,6 @@ public class StockMarketController {
      * @param commonStock
      * @return
      */
-
     @PostMapping(value = "/createCommonStock", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createCommonStock(@RequestBody CommonStock commonStock) throws  InvalidStockException{
         tradeService.setStockDataService(stockDS);

@@ -34,7 +34,7 @@ public interface IStockAPI {
 	/**
 	 * Calculate Volume Weighted Stock Price based on trades in past given input minutes
 	 * 
-	 * @param symbol Symbol of the stock
+	 * @param stockSymbol Symbol of the stock
 	 * @param minutes Time frame in which volume weighted stock price has to be calculated 
 	 * @return Volume Weighted Stock price of a given stock
 	 * 

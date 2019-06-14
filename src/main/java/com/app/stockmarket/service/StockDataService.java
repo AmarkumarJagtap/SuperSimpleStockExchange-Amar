@@ -39,7 +39,7 @@ public interface StockDataService {
 	/**
 	 * Update stock details
 	 * 
-	 * @param stock Stock object containing the stock details
+	 * @param stockSymbol Stock object containing the stock details
 	 * 
 	 * @return Stock object containing the stock details
 	 */
