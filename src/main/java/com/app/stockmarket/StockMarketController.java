@@ -99,8 +99,12 @@ public class StockMarketController {
      * @throws InvalidStockException
      */
     @PostMapping(value = "/sell")
-    public ResponseEntity<String> sell(@Valid String stockSymbol, @Valid int quantity, @Valid double price) throws InvalidStockException{
+    public ResponseEntity<String> sell(@Valid String stockSymbol, @Valid int quantity, @Valid double price){
+        try{
         return new ResponseEntity<> (stockExchange.sellStock(stockSymbol,quantity,price) ? "Stock sold successfully": "Something went wrong, please try again",  HttpStatus.OK);
+    }catch (InvalidStockException ise){
+        return  new ResponseEntity<>(ise.getMessage(), HttpStatus.EXPECTATION_FAILED);
+    }
     }
 
     /**
@@ -112,8 +116,12 @@ public class StockMarketController {
      * @throws InvalidStockException
      */
     @PostMapping(value = "/buy")
-    public ResponseEntity<String>  buy(@Valid String stockSymbol, @Valid int quantity, @Valid double price) throws InvalidStockException{
-        return new ResponseEntity<> (stockExchange.buyStock(stockSymbol,quantity,price) ? "Stock bought successfully" : "Something went wrong, please try again", HttpStatus.OK);
+    public ResponseEntity<String>  buy(@Valid String stockSymbol, @Valid int quantity, @Valid double price){
+        try {
+            return new ResponseEntity<>(stockExchange.buyStock(stockSymbol, quantity, price) ? "Stock bought successfully" : "Something went wrong, please try again", HttpStatus.OK);
+        }catch (InvalidStockException ise){
+            return  new ResponseEntity<>(ise.getMessage(), HttpStatus.EXPECTATION_FAILED);
+        }
     }
 
     /**

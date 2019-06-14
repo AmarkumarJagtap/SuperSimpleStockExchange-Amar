@@ -16,6 +16,7 @@ import com.app.stockmarket.domain.Stock;
 import com.app.stockmarket.domain.TradeTransaction;
 import com.app.stockmarket.exception.InvalidStockException;
 import com.app.stockmarket.service.StockDataService;
+import com.app.stockmarket.utils.ErrorMessages;
 import org.springframework.stereotype.Service;
 
 /**
@@ -107,7 +108,7 @@ public class StockDataServiceImpl implements StockDataService {
 	public Stock getStockData(String stockSymbol) throws InvalidStockException {
 
 		if (!stocks.containsKey(stockSymbol))
-			throw new InvalidStockException(InvalidStockException.ErrorCode.INVALID_STOCK_SYMBOL);
+			throw new InvalidStockException(ErrorMessages.INVALID_STOCK_SYMBOL);
 
 		return stocks.get(stockSymbol);
 	}
@@ -121,13 +122,13 @@ public class StockDataServiceImpl implements StockDataService {
 
 	private void validate(TradeTransaction tradeTransaction) throws InvalidStockException {
 		if (!stocks.containsKey(tradeTransaction.getStockSymbol()))
-			throw new InvalidStockException(InvalidStockException.ErrorCode.INVALID_STOCK_SYMBOL);
+			throw new InvalidStockException(ErrorMessages.INVALID_STOCK_SYMBOL);
 
 		if (tradeTransaction.getQuantity() <= 0)
-			throw new InvalidStockException(InvalidStockException.ErrorCode.INVALID_STOCK_QTY);
+			throw new InvalidStockException(ErrorMessages.INVALID_STOCK_QUANTITY);
 
 		if (tradeTransaction.getTradedPrice() <= 0.0)
-			throw new InvalidStockException(InvalidStockException.ErrorCode.INVALID_STOCK_PRICE);
+			throw new InvalidStockException(ErrorMessages.INVALID_STOCK_PRICE);
 
 		return;
 

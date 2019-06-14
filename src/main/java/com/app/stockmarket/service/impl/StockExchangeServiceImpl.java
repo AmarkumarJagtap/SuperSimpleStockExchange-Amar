@@ -17,6 +17,7 @@ import com.app.stockmarket.service.TradeService;
 import com.app.stockmarket.service.TradeService.BuySellIndicator;
 import com.app.stockmarket.service.StockExchangeService;
 import com.app.stockmarket.types.StockType;
+import com.app.stockmarket.utils.ErrorMessages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +49,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	 */
 	public boolean createStockInMarket(Stock stock) throws InvalidStockException {
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		return tradeService.createStockInMarket(stock);
 	}
@@ -89,7 +90,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	public boolean buyStock(String stockSymbol, int quantity, double price) throws InvalidStockException {
 		
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		Date date = Calendar.getInstance().getTime();
 		
@@ -106,7 +107,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	 */
 	public boolean sellStock(String stockSymbol, int quantity, double price) throws InvalidStockException  {
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		Calendar calendar = Calendar.getInstance();
 		Date date = calendar.getTime();
@@ -123,11 +124,11 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	public double calculateDividendYield(String stockSymbol, double price) throws InvalidStockException  {
 		
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		final StockType stockType = tradeService.getStockData(stockSymbol).getStockType();
 		
@@ -146,10 +147,10 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	public double calculateVolumeWeightedStockPrice(String stockSymbol) throws InvalidStockException  {
 		
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		IStockAPI stockAPI = StockAPIFactory.generateStockAPI(tradeService.getStockData(stockSymbol).getStockType(), stockDataService);
 		
@@ -161,10 +162,10 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	public double priceOverDividendRatio(String stockSymbol, double price) throws InvalidStockException {
 		
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		IStockAPI stockAPI = StockAPIFactory.generateStockAPI(tradeService.getStockData(stockSymbol).getStockType(), stockDataService);
 		
@@ -176,10 +177,10 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	public double calculateVolumeWeightedStockPrice(String stockSymbol, int minutes) throws InvalidStockException {
 		
 		if(tradeService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		IStockAPI stockAPI = StockAPIFactory.generateStockAPI(tradeService.getStockData(stockSymbol).getStockType(), stockDataService);
 		
@@ -193,9 +194,10 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	 * @return
 	 */
 	public double calculateAllShareIndex() throws InvalidStockException  {
-		
+
+
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		IStockAPI stockAPI = StockAPIFactory.generateStockAPI(StockType.COMMON, stockDataService);
 		
@@ -205,7 +207,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	@Override
 	public List<String> listAllStockSymbols() {
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		return stockDataService.listStockSymbols();
 	}
@@ -213,7 +215,7 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	@Override
 	public List<Stock> listAllStocksInMarket() {
 		if(stockDataService == null)
-			throw new UnsupportedOperationException("Trade Service is not configured");
+			throw new UnsupportedOperationException(ErrorMessages.TRADE_SERVICE_NOT_CONFIGURED);
 		
 		return stockDataService.listAllStocks();
 	}
