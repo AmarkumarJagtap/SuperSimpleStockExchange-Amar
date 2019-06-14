@@ -158,6 +158,47 @@ public class StockMarketController {
 
     }
 
+    /**
+     *
+     * @param commonStocks
+     * @return
+     * @throws InvalidStockException
+     */
+    @PostMapping(value = "/createCommonStocks", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> createCommonStocks(@RequestBody List<CommonStock> commonStocks) throws  InvalidStockException{
+        tradeService.setStockDataService(stockDS);
+        stockExchange.setName("GBCE");
+        stockExchange.setCountry("UK");
+        stockExchange.registerStockDataService(stockDS);
+        stockExchange.registerTradeService(tradeService);
+        for(CommonStock commonStock:commonStocks){
+            stockExchange.createStockInMarket(commonStock);
+        }
+
+        return new ResponseEntity<> ( "Common Stock added successfully", HttpStatus.OK);
+
+    }
+
+    /**
+     *
+     * @param stocks
+     * @return
+     * @throws InvalidStockException
+     */
+    @PostMapping(value = "/createPreferredStock", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> createPreferredStock(@RequestBody List<FixedDividendStock> stocks) throws  InvalidStockException{
+        tradeService.setStockDataService(stockDS);
+        stockExchange.setName("GBCE");
+        stockExchange.setCountry("UK");
+        stockExchange.registerStockDataService(stockDS);
+        stockExchange.registerTradeService(tradeService);
+        for(FixedDividendStock stock:stocks){
+            stockExchange.createStockInMarket(stock);
+        }
+
+        return new ResponseEntity<> ( "Common Stock added successfully", HttpStatus.OK);
+
+    }
 
     /**
      *
@@ -227,6 +268,7 @@ public class StockMarketController {
         stock1.setLastDividend(8);
         stock1.setFixedDividendPercentage(2);
         stockExchange.createStockInMarket(stock1);
+
        return new ResponseEntity<>(stockExchange.listAllStocksInMarket(), HttpStatus.OK);
     }
 
